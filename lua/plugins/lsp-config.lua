@@ -34,12 +34,21 @@ return{
       "neovim/nvim-lspconfig",
         config=function()
             local lspconfig=require("lspconfig")
-            lspconfig.lua_ls.setup({})
-            lspconfig.tsserver.setup({})
-            lspconfig.jedi_language_server.setup({})
-            lspconfig.biome.setup({})
-            lspconfig.clangd.setup({})
-            lspconfig.cssls.setup({})
+            local capabilities = require('cmp_nvim_lsp').default_capabilities()
+            lspconfig.lua_ls.setup({
+                capabilities = capabilities
+
+            })
+            lspconfig.tsserver.setup({
+            capabilities = capabilities})
+            lspconfig.jedi_language_server.setup({
+            capabilities = capabilities})
+            lspconfig.biome.setup({
+            capabilities = capabilities})
+            lspconfig.clangd.setup({
+            capabilities = capabilities})
+            lspconfig.cssls.setup({
+            capabilities = capabilities})
 
             vim.keymap.set('n','K',vim.lsp.buf.hover,{})
             vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
